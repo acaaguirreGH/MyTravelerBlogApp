@@ -1,0 +1,79 @@
+.mat-fab.mat-accent{
+    background-color: coral;
+    color: white;
+    outline-style: none;
+    
+  }
+  
+  .mat-button-base {
+      margin: 8px 8px 8px 0;
+    }
+  
+  .mat-input-wrapper{
+      width:400px !important;
+    }
+  
+  
+  .center{
+      display: flex;
+      justify-content: center !important;
+      text-align: center !important;
+  }
+  
+  .right{
+      display: flex !important;    
+      padding-left: 85%;
+  }
+  
+  
+  .title-helper{
+        color: coral;
+    }
+  
+  #actionBtn {
+    position: fixed;
+    
+    top: 20%;
+    z-index: 1;
+  }
+  
+  .page-title {
+    padding-top:15px;
+    text-align:center;
+  }
+  
+  
+  
+  h2 {
+    font-size: 60px;
+    font-weight: 700;
+  }
+  
+  .page-title .title-helper{
+    display:inline-block;
+    position:relative;
+    padding:8px 16px;
+    font-size:18px;
+    color:coral
+  }
+  
+  .page-title .title-helper:after, .page-title .title-helper:before{
+    position:absolute;
+    top:0;
+    display:block;
+    width:12px;
+    height:34px;
+    content:" ";
+    border:2px solid coral
+  }
+  .page-title .title-helper:before{
+    left:0;
+    border-right:none
+  }
+  .page-title .title-helper:after{
+    right:0;
+    border-left:none
+  }
+    
+  
+    
