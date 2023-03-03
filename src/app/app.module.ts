@@ -7,11 +7,17 @@ import { HomeComponentComponent } from './home-component/home-component.componen
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PostPreviewComponent } from './post-preview/post-preview.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
+import { PostsHolderComponent } from './posts-holder/posts-holder.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponentComponent
+    HomeComponentComponent,
+    PostPreviewComponent,
+    PostDetailsComponent,
+    PostsHolderComponent
   ],
   imports: [
     BrowserModule,
