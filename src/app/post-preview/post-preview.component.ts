@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BaseModalComponent } from '../base-modal/base-modal.component';
 import { PostModel, postState } from '../Models/post';
 
 @Component({
@@ -20,7 +22,7 @@ export class PostPreviewComponent {
   hover: string = 'out';
   sameTypeCounter: {catName: '', };
   
-  constructor(private route: ActivatedRoute, private router: Router, public http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private router: Router, public http: HttpClient, public dialog: MatDialog) { }
   
   ngOnInit() {
     this.showActions = false;
@@ -30,6 +32,15 @@ export class PostPreviewComponent {
       this.commentsLength = this.postData.comments.length;
     }
   
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+   
+    this.dialog.open(BaseModalComponent, {
+      width: 'auto',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 
   filterPosts() {

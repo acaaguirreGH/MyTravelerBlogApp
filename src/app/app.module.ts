@@ -19,6 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { BaseModalComponent } from './base-modal/base-modal.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     PostPreviewComponent,
     PostDetailsComponent,
     PostsHolderComponent,
-    NewPostComponent
+    NewPostComponent,
+    BaseModalComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatCardModule,
     HttpClientModule,
     MatGridListModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

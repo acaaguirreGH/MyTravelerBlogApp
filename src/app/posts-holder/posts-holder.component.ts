@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PostModel } from '../Models/post';
 import { createApi } from 'unsplash-js';
 import { PostService } from '../services/post-service.service';
+import { ICategory } from '../Models/icategory';
 
 @Component({
   selector: 'app-posts-holder',
@@ -25,14 +26,21 @@ export class PostsHolderComponent implements OnInit  {
 
        });
 
-  constructor(public postServiceOne: PostService, private router: Router) { }
+  constructor(public postServiceOne: PostService, private router: Router) {
+
+    this.postServiceOne.addUsuario$.subscribe(status => {
+      this.postArray = JSON.parse(localStorage.getItem('1')!);
+      postServiceOne.getURLs();
+    })
+   }
+ 
   
   ngOnInit() {
   this.categories = this.postServiceOne.GetCategories();
   if (!localStorage.getItem('EditingPost')) {
       this.postServiceOne.GetPosts().subscribe(postArray => this.postArray = postArray);
       this.postArrayF = this.postArray;
-      this.postServiceOne.getUrl();       
+      this.postServiceOne.getURLs();       
   } else {
     let postsCache = localStorage.getItem('EditingPost');
     if (postsCache !== undefined) {
@@ -81,35 +89,11 @@ filterPosts($event: any) {
 
 SavePost(data: PostModel) {
   if (data != null) {
-     if (this.postArray !== undefined) {
-        this.lastId = this.lastId + 1;
-        this.postArrayF.push(
-          {id: data.id = this.lastId, title: data.title, description: data.description, category: data.category, state: data.state});
-          this.lastId = this.lastId + 1;
-        this.newPost = new PostModel;
-        this.hideModel();
-        localStorage.setItem( '1', JSON.stringify(this.postArray));
-        
-        if(this.postArray.length === 0 && this.postArrayF.length > 0) {
-          this.postArray = this.postArrayF;
-        }      
-        if(this.currCat !== undefined){
-          this.setCategory(this.currCat);  
-        }else {
-          this.currCat = {key: 'AllKey', value: 'All'};
-          this.setCategory(this.currCat);
-        }
-        this.postServiceOne.getUrl();
-        
+    this.postServiceOne.savePost(data);
   }
-}
 }
 
 hideModel() {
 this.closeModal.nativeElement.click();
-}
-}
-interface ICategory {
-  key: string;
-  value: string;
+} 
 }
