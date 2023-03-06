@@ -1,0 +1,38 @@
+<div class="container">
+    <form #form="ngForm">
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput name="title" placeholder="Title" value="" [(ngModel)]="newPost.title">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <input matInput name="description" placeholder="Description" value="" [(ngModel)]="newPost.description">
+            </mat-form-field>
+        </div>            
+    <div>
+        <mat-form-field>
+        <mat-select placeholder="Category" [(ngModel)]="newPost.category" name="category">
+            <mat-option *ngFor="let item of categories" [value]="item.value">
+                {{item.value}}
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+    </div>   
+    <div>
+        <div>
+                <mat-form-field>
+                    <input matInput name="imageURL" placeholder="URL of the image" value="https://source.unsplash.com/random" [(ngModel)]="newPost.imageUrl">              
+                </mat-form-field><span><mat-icon>link</mat-icon></span>
+        </div>
+    </div> 
+    <div class="row">
+        <div>
+                <button type="button" mat-button type="reset" >Cancel</button>
+        </div>
+        <div>
+                <button type="button" mat-raised-button color="primary" (click)="EmitPost(newPost)">Save</button>
+        </div>
+    </div>     
+    </form>
+</div>

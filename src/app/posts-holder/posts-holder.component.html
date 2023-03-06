@@ -1,1 +1,31 @@
-<p>posts-holder works!</p>
+<div class="test">
+    <div class="right">
+    <mat-button-toggle-group class="flex-wrap" >
+        <mat-button-toggle (click)="setCategory(button)" *ngFor="let button of categories">{{button.value}}</mat-button-toggle>            
+    </mat-button-toggle-group>    
+    <br>    
+    </div>
+    <div class="row">
+        <div id="postsContainer" class="col-sm-6" *ngFor="let post of postArray">
+            <app-post-preview style="height: 320px; background-size: cover;" [postData]= 'post'
+             (removeEmitter)="removePost(post.id)">
+          </app-post-preview>
+        </div>
+    </div>
+</div>
+
+<div  id="NewPostModal" class="modal" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create Post</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"  #closebutton (click)="hideModel()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> 
+        <div class="modal-body">
+           <app-new-post (postEmit)="SavePost($event)" [newPost]='newPost'></app-new-post>
+        </div>
+      </div>
+    </div>
+ </div>

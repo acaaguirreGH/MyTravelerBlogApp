@@ -7,10 +7,27 @@
         <h2>Discovering the World</h2>
     </div>  
     <div class="right" *ngIf="hideButton">
-        <button mat-fab mat-accent id="actionBtn" color="accent" data-toggle="modal" data-target="#NewPostModal">
+        <button mat-fab mat-accent id="actionBtn" color="accent" data-toggle="modal" data-target="#NewPostModal1">
             <mat-icon>edit</mat-icon>
         </button>
     </div>    
 </div>
+<app-posts-holder></app-posts-holder>
 
+
+<div  id="NewPostModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create Post</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> 
+        <div class="modal-body">
+           <!-- <app-new-post (postEmit)="SavePost($event)" [newPost]='newPost'></app-new-post> -->
+        </div>
+      </div>
+    </div>
+ </div>
 
