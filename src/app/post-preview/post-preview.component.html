@@ -1,1 +1,56 @@
-<p>post-preview works!</p>
+ <div class="example-card" id="DivPost" (mouseover)="mouseOver()" (mouseout)="mouseOut()" class="postStyle" [ngClass]="{'postStyle': hover === 'out', 'Backhover': hover === 'in' }" [ngStyle]="{'background-image': this.postData.imageUrl}" routerLink="/Posts/{{postData.id}}">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{postData.title}}</mat-card-title>
+      <!-- <mat-card-subtitle>{{postData.category}}</mat-card-subtitle> -->
+    </mat-card-header>
+    <mat-card-content>
+        <div class="postDetails">
+            <!-- <h2 class="card-title">{{postData.title}}</h2> -->
+            <div id="bar" style="height: 12px;" [ngClass]="{'barprogress': hover === 'out', 'barprogressoverlay': hover === 'in' }" >
+              
+            </div>
+            <i><p>{{commentsLength}} Comments </p></i>
+            <h4 class="card-subtitle mb-2">{{postData.description}}</h4>
+            <p class="card-text">{{postData.category}}</p> 
+          </div> 
+    </mat-card-content>
+    <mat-card-actions [hidden]="!showActions" (mouseover)="mouseOver()" (mouseout)="mouseOut()">
+        <button mat-button  (click)="removeEmit()"><mat-icon>delete</mat-icon></button>
+        <button mat-button data-toggle="modal" data-target="#EditPostModal" (click)="editEmit()"><mat-icon>edit</mat-icon></button>      
+    </mat-card-actions> 
+</div>
+
+
+
+ <!-- <div id="DivPost" (mouseover)="mouseOver()" (mouseout)="mouseOut()" class="postStyle" [ngClass]="{'postStyle': hover === 'out', 'Backhover': hover === 'in' }" [ngStyle]="{'background-image': this.postData.imageUrl}" routerLink="/Posts/{{postData.id}}">
+    <div class="postDetails">
+      <h2 class="card-title">{{postData.title}}</h2>
+      <div id="bar" style="height: 12px;" [ngClass]="{'barprogress': hover === 'out', 'barprogressoverlay': hover === 'in' }" >
+        
+      </div>
+      <i><p>{{commentsLength}} Comments </p></i>
+      <h4 class="card-subtitle mb-2">{{postData.description}}</h4>
+      <p class="card-text">{{postData.category}}</p> 
+    </div> 
+</div>
+<mat-card-actions [hidden]="!showActions" (mouseover)="mouseOver()" (mouseout)="mouseOut()">
+    <button mat-button (click)="removeEmit()"><mat-icon>delete</mat-icon></button>
+    <button mat-button data-toggle="modal" data-target="#EditPostModal" (click)="editEmit()"><mat-icon>edit</mat-icon></button>      
+</mat-card-actions> 
+
+<div id="EditPostModal" class="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Post</h5>
+        <button type="button" class="close" data-dismiss="modal" #closebutton1 aria-label="Close" (click)="hideModel1()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <app-new-post-form (postEmit)="ReceivePost($event)" ></app-new-post-form> 
+             </div>
+    </div>
+  </div>
+</div> -->

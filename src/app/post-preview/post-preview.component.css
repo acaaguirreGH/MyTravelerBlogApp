@@ -1,0 +1,114 @@
+#DivPost{
+    color: white;
+    text-align: left;
+    padding-top: 25%;
+    padding-left: 4%;
+    padding-bottom: 4%;    
+    background-position: center center;
+	background-size: cover;
+    background-repeat: no-repeat;
+  font-weight: 500;
+}
+.postStyle {
+    background-size: cover;
+}
+
+mat-icon{
+    color: white;
+}
+
+#actions{
+    right: 0;    
+}
+
+button{
+    outline-style: initial;
+    color: white;
+}
+
+.Backhover  {
+    color: rgb(170, 23, 23);
+    text-align: center;
+    padding-top: 25%;
+    padding-left: 4%;
+    padding-bottom: 4%;    
+    background-position: center center;
+	background-size: cover;
+    background-repeat: no-repeat;
+    font-weight: 500;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    width: 100%;
+    transition: .5s ease;
+}
+#DivPost:hover .Backhover {
+    
+}
+
+p {
+    color: white;
+}
+
+.right{
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.mat-button-toggle{
+    width: 100px;;
+}
+
+.matInput{
+    min-width: 150px;
+}
+.card-text {
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: .8rem;
+    font-weight: 500;
+    padding-top: 3%;
+}
+
+.card-subtitle {
+    font-size: 1rem;
+}
+.mat-card-actions {
+    display: flex;
+    position: absolute;  
+    top: 80%;
+    right: 20%;
+    color: white;
+}
+
+.mat-card-actions:hover::after {
+    z-index: 5;
+}
+
+.mat-form-field{
+    display: initial;
+}
+
+.modal-content{
+    padding: 15px;
+}
+
+#NewPostModal{
+    padding-top: 10%;
+}
+
+.modal-title{
+    padding-left: 40%;
+}
+
+.barprogress {
+  height: 10px;
+  background: green;
+  width: 0px;
+}
+
+.barprogressoverlay  {
+    background: white;
+    transition: width 1s;
+    width: 100px;
+}
