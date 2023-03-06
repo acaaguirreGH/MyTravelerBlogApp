@@ -61,12 +61,19 @@ export class NewPostComponent {
       localStorage.setItem('EditingPost', JSON.stringify(this.newPost));
       this.postEmit.emit(undefined);
     } else {
-      this.newPost.state = postState.Added;
-      this.postEmit.emit(this.newPost);
+
+      if (data != null) {
+        this.postService.savePost(data);
+      }
+      //this.newPost.state = postState.Added;
+      //this.postEmit.emit(this.newPost);
     }
     this.ClearData();
-  }
+  } 
 
+  SavePost(data: PostModel){
+    
+  }
   ClearData() {    
     this.newPost.category = '';
     this.newPost.description = '';
@@ -74,4 +81,6 @@ export class NewPostComponent {
     this.newPost.imageUrl = undefined;
     this.newPost.title = '';    
   }
+
+  
 }
