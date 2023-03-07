@@ -21,7 +21,8 @@ export class PostService {
   public addUsuario$ = this.addUsuarioSource.asObservable();    
 
   constructor() {
-    this.addUsuario$.subscribe(status => window.localStorage.setItem('addUsuario', status));
+    //Subscribe for changes so the UI gets refreshed with the new posts
+    this.addUsuario$.subscribe();
    }
 
   GetCategories() {
@@ -136,14 +137,11 @@ export class PostService {
           }
         });
       }
-
-
       });
   }
 
     catch (error) {
     console.log(error);
-
     }
   } 
 
@@ -154,7 +152,7 @@ export class PostService {
             {
               query: category,
               page: 1,
-              perPage: 5
+              perPage: this.existingPosts.length + 1
             })
             .then(async result => {
             if (result.errors) {
@@ -163,13 +161,17 @@ export class PostService {
               return url;
             } else {
               let counter = 0;
+              this.existingPosts.forEach(r => {
+                if(r.category === category) {
+                  counter++;
+                }
+              });
               url = 'url('+'\'' + result.response.results[counter].urls.regular + ''+'\)';            
             }
             return url;
           });
           return url;
     }
-
     catch (error) {
       console.log(error);
       return "";

@@ -35,7 +35,7 @@ export class HomeComponentComponent implements OnInit {
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.hideButton = true;
     this.dialog.open(BaseModalComponent, {
-      width: 'auto',
+      width: '350px',
       enterAnimationDuration,
       exitAnimationDuration,
     });

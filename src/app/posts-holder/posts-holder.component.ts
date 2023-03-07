@@ -80,7 +80,7 @@ setCategory(option: ICategory) {
 filterPosts($event: any) {
   if (this.filterCategory === 'All' || this.filterCategory === $event) {
     if($event !== undefined && $event !== '' && $event !== 'All') {
-      this.postArray = this.postArray.filter(x => x.category === $event);
+      this.postArray = this.postArrayF.filter(x => x.category === $event);
     } else if(this.filterCategory === 'All') {
       this.postArray = this.postArrayF;
     }

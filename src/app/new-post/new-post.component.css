@@ -1,3 +1,11 @@
 .container{
     width: max-content;
 }
+
+mat-form-field{
+    width: -webkit-fill-available;
+}
+
+form {
+    width: auto;
+}
