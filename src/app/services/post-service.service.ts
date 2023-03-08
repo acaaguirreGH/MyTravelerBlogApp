@@ -184,33 +184,47 @@ export class PostService {
         let postArray : PostModel[];
         let postArrayF: PostModel[];
         let lastId: number;
-        let currCat: ICategory;
-        let selectedValueCategory: string;
         if (postsCache !== undefined) {
         let r: PostModel[] = JSON.parse(postsCache!);
-        postArray = r;        
-        postArrayF = postArray;   
-        lastId = postArray.length;  
+        postArray = r;
+        postArrayF = postArray;
+        lastId = postArray.length;
+
+        if(data.state == postState.Modified){
+
+          let indexUpdate = postArray.findIndex(x => x.id == data.id);          
+          postArray.forEach(element => {
+            if (element.id == data.id) {
+              if (element.category != data.category) {
+                this.getSingleURL(data.category).then(res => {
+                  data.imageUrl = res;
+                });
+              }
+              postArray[indexUpdate] =  data;
+            }
 
 
-      if (postArray !== undefined) {
-         lastId = lastId + 1;
-         postArray.push(
-           {id: data.id = lastId, title: data.title, description: data.description, category: data.category, state: data.state, imageUrl: await this.getSingleURL(data.category)});         
-         localStorage.setItem( '1', JSON.stringify(postArray));
-         this.addUsuarioSource.next(JSON.stringify(postArray));
-         this.existingPosts = postArray;
-         if(postArray.length === 0 && postArrayF.length > 0) {
-           postArray = postArrayF;
-         }      
-        //  if(currCat !== undefined){
-        //    this.setCategory(this.currCat);  
-        //  }else {
-        //    this.currCat = {key: 'AllKey', value: 'All'};
-        //    this.setCategory(this.currCat);
-        //  }
+          });
+
+          postArray = postArray;
         }
-      }
+        this.existingPosts = postArray; 
+
+        if (postArray !== undefined) {
+          if(data.state == postState.Added)
+          {
+            lastId = lastId + 1;
+            postArray.push(
+              {id: data.id = lastId, title: data.title, description: data.description, category: data.category, state: data.state, imageUrl: await this.getSingleURL(data.category)});         
+          }
+            localStorage.setItem( '1', JSON.stringify(postArray));
+            this.addUsuarioSource.next(JSON.stringify(postArray));
+            this.existingPosts = postArray;
+            if(postArray.length === 0 && postArrayF.length > 0) {
+              postArray = postArrayF;
+            }    
+          }
+        }
     }
     return this.addUsuario$;
     }

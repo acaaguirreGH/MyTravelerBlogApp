@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { PostService } from '../services/post-service.service';
 
 @Component({
   selector: 'app-base-modal',
@@ -7,6 +8,20 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
   styleUrls: ['./base-modal.component.css']
 })
 export class BaseModalComponent {
-  constructor(public dialogRef: MatDialogRef<BaseModalComponent>) {}
-  
+bars: number;
+
+  constructor(private postServiceOne: PostService, public dialogRef: MatDialogRef<BaseModalComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+    if(data != null && data.id > 0 )
+    {
+      //get the localStorage item and update it
+
+      this.bars = data;
+    }
+
+    this.postServiceOne.addUsuario$.subscribe(status => {
+      dialogRef.close()
+      //this.postArray = JSON.parse(localStorage.getItem('1')!);
+    })
+
+  }
 }

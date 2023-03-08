@@ -1,5 +1,5 @@
 <div class="container">
-    <form #form="ngForm">
+    <form #form="ngForm" id="rest">
         <div class="form-group">
             <mat-form-field>
                 <mat-label>Title</mat-label>
@@ -34,10 +34,10 @@
   
     <div mat-dialog-actions class="row" align="end">
         <div class="col-sm-6">
-                <button type="button" mat-button mat-dialog-close >Cancel</button>
+                <button type="button" mat-button mat-dialog-close (click)="ClearData()">Cancel</button>
         </div>
         <div class="col-sm-6">
-                <button type="button" mat-raised-button color="primary" (click)="EmitPost(newPost)">Save</button>
+                <button type="button" mat-raised-button color="primary" (click)="SavePost(newPost)">Save</button>
         </div>
     </div>     
     </form>

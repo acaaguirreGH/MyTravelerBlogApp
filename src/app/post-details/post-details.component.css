@@ -1,0 +1,86 @@
+
+body{
+    background-color: gray;
+}
+
+.container {
+    width: 40%;
+    display: contents;
+}
+.mat-fab {
+    text-align: left;
+}
+
+.mat-button {
+    background-color: transparent;
+    outline-style: none;
+    color: white;
+    width: max-content;
+    border: none;
+    padding: 10px;
+    padding-left: 15px;
+}
+
+.postInfo{
+    padding-left: 15%;
+    padding-top: 5%;
+    padding-right: 15%;
+    background-color: whitesmoke;
+}
+
+.btnSmall{
+    width: 20px;
+}
+
+.cards {
+    padding-top: 20px;
+}
+
+.dets{
+    font-size: 16px;
+}
+
+.desc{
+    
+    line-height: normal;
+    text-align: center;
+}
+
+#Title {
+    color: #ffffff;
+    font-size: 5.4rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+#description {
+    color: black;
+    font-size: 3.4rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+#imgContainer {
+    width: 100%;   
+    min-height: 300px;
+    background-position: center center !important;
+	background-size: cover !important;
+    display: flex;
+    box-shadow: 0 0 0 1000px rgba(0,0,0,.2) inset;
+}
+mat-form-field{
+    width: 100%;
+}
+#actions {
+    display: flex !important;
+    padding-bottom: 30px;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+.rounded {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
