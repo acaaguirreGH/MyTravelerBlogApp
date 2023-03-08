@@ -30,19 +30,18 @@ export class PostsHolderComponent implements OnInit  {
 
     this.postServiceOne.addUsuario$.subscribe(status => {
       this.postArray = JSON.parse(localStorage.getItem('1')!);
-      postServiceOne.getURLs();
     })
    }
  
   
   ngOnInit() {
   this.categories = this.postServiceOne.GetCategories();
-  if (!localStorage.getItem('EditingPost')) {
+  if (!localStorage.getItem('1')) {
       this.postServiceOne.GetPosts().subscribe(postArray => this.postArray = postArray);
       this.postArrayF = this.postArray;
       this.postServiceOne.getURLs();       
   } else {
-    let postsCache = localStorage.getItem('EditingPost');
+    let postsCache = localStorage.getItem('1');
     if (postsCache !== undefined) {
       let r: PostModel[] = JSON.parse(postsCache!);
       this.postArray = r;

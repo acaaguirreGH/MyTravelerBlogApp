@@ -14,14 +14,8 @@ export class NewPostComponent {
   @Output() postEmit = new EventEmitter<PostModel>();
   activeModal: boolean;
 
-   constructor(public postService: PostService, private router: Router) {
-    // this.router.events.subscribe((event: NavigationStart) => {
-    //   if (event !== undefined && event.url !== undefined) {
-    //     const postId = event.url.substr(7, 8);
-    //     if(postId !== undefined) {
-    //     }
-    //   }
-    // });
+   constructor(public postService: PostService) {
+    
   }
 
   ngOnInit() {
@@ -34,6 +28,7 @@ export class NewPostComponent {
     if (this.newPost === undefined) {
       this.newPost = new PostModel();
       this.newPost.id = 0;
+      this.ClearData();
     }   
     this.categories = this.postService.GetCategories();
   } 
@@ -54,32 +49,28 @@ export class NewPostComponent {
     }
   }
 
-  EmitPost(data: PostModel) {
+  SavePost(data: PostModel) {
     
-    if(this.newPost.state === postState.Modified) {
-      this.newPost.state = postState.Modified;
+    if(this.newPost.state === postState.Modified) {   
+      localStorage.removeItem('EditingPost');  
       localStorage.setItem('EditingPost', JSON.stringify(this.newPost));
-      this.postEmit.emit(undefined);
+      this.postService.savePost(data);
     } else {
-
       if (data != null) {
+        data.state = postState.Added;
         this.postService.savePost(data);
       }
-      //this.newPost.state = postState.Added;
-      //this.postEmit.emit(this.newPost);
     }
     this.ClearData();
   } 
 
-  SavePost(data: PostModel){
-    
-  }
   ClearData() {    
     this.newPost.category = '';
     this.newPost.description = '';
     this.newPost.id = 0;
     this.newPost.imageUrl = undefined;
-    this.newPost.title = '';    
+    this.newPost.title = '';
+    localStorage.removeItem('EditingPost'); 
   }
 
   

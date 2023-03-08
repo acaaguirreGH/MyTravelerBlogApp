@@ -34,13 +34,18 @@ export class PostPreviewComponent {
   
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openEditDialog(data: number): void {
    
+    //1- way to send data in localStorage
+    this.postData.state = postState .Modified;
+    localStorage.setItem('EditingPost', JSON.stringify(this.postData));
+
     this.dialog.open(BaseModalComponent, {
       width: 'auto',
-      enterAnimationDuration,
-      exitAnimationDuration,
+      //2- send data in modal object
+      data:{id: data}
     });
+
   }
 
   filterPosts() {
@@ -95,3 +100,5 @@ export class PostPreviewComponent {
     this.closeModal.nativeElement.click();
   }
 }
+
+

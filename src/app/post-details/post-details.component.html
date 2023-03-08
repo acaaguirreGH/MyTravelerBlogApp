@@ -1,1 +1,38 @@
-<p>post-details works!</p>
+<div  id="imgContainer"  [ngStyle]="{'background-image': currentPost.imageUrl}">  
+    <div>
+        <button class="mat-button" (click)="GoBack()"> <  View Posts</button>  
+    </div>  
+          
+        <div class="" id="Title">
+            <p>{{currentPost.title}}</p>
+        </div>        
+</div>
+<div class="postInfo">
+    <div class="desc" id="description">
+        <p class="dets">{{currentPost.description}}</p>
+    </div>
+    <div class="container rounded">    
+        <b>Comments</b>
+        <div *ngFor="let comment of commentsArray">
+            <div class="card text-left">
+                <div class="cards">
+                   <div class="card-body">
+                    <b><h4 class="card-title"><span><mat-icon>account_circle</mat-icon></span> {{comment.author}}</h4></b>
+                    <p class="card-text">{{comment.comment}}</p>
+                  </div>        
+                </div>
+            </div>
+            <br>
+        </div>    
+        <div id="actions" class="row" style="align-items: center;">
+            <div class="col-sm-12">
+                <mat-form-field>
+                    <textarea matInput name="comment" placeholder="Write a comment" [(ngModel)]="newComment.comment" ></textarea>
+                </mat-form-field>
+            </div>
+            
+            <button mat-raised-button color="primary" class="btnSmall"  (click)="AddComment()">Add</button>
+        </div>
+    </div>
+</div>
+
