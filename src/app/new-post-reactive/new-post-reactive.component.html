@@ -1,0 +1,69 @@
+
+    <form [formGroup]="postGroup">
+        <div class="form-group">
+                <mat-form-field>
+                    <input matInput name="title"
+                id="Title"
+                type="text"
+                placeholder="Title"
+                formControlName="Title">
+                <mat-error *ngIf="Title?.hasError">
+                    Title is <strong>required</strong>
+                </mat-error> 
+                </mat-form-field>        
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput
+                id="Description"
+                type="text"
+                placeholder="Description"
+                formControlName="Description">
+                <mat-error *ngIf="Description?.hasError">
+                    Description is <strong>required</strong>
+                </mat-error> 
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <mat-select placeholder="Category" formControlName="Category" name="category">
+                    <mat-option *ngFor="let item of categories" [value]="item.value">
+                        {{item.value}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="Category?.hasError">
+                    Category is <strong>required</strong>
+                </mat-error> 
+             </mat-form-field>
+        </div>
+        <div class="form-group">
+            <div>
+                 <mat-form-field>
+                     <input matInput name="imageURL"
+                     placeholder="URL of the image" 
+                     value="https://source.unsplash.com/random" 
+                     formControlName="imageURL">     
+                     <span><mat-icon>link</mat-icon></span>               
+                 </mat-form-field>
+            </div>
+            <div>
+              
+            </div>
+        </div>        
+        <div class="form-group row">
+            <div>
+                <div class="col-sm-6">
+                    <button type="button" mat-button mat-dialog-close >Cancel</button>
+            </div>
+            </div>
+            <div>
+                <button mat-flat-button color="primary" type="submit" 
+                [title]="postGroup.valid ? 'Save your data' :'Disabled until the form is valid'"
+                [disabled]="!postGroup.valid" (click)="savePost()">
+                Save
+                </button>
+            </div>
+            
+        </div>
+    
+    </form>

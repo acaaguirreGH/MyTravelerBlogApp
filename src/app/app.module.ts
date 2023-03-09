@@ -21,6 +21,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { BaseModalComponent } from './base-modal/base-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NewPostReactiveComponent } from './new-post-reactive/new-post-reactive.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     PostDetailsComponent,
     PostsHolderComponent,
     NewPostComponent,
-    BaseModalComponent
+    BaseModalComponent,
+    NewPostReactiveComponent
   ],
   imports: [
     BrowserModule,
