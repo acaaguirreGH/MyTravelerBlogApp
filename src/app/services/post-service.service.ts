@@ -215,7 +215,7 @@ export class PostService {
           {
             lastId = lastId + 1;
             postArray.push(
-              {id: data.id = lastId, title: data.title, description: data.description, category: data.category, state: data.state, imageUrl: await this.getSingleURL(data.category)});         
+              {id: data.id = lastId, title: data.title, description: data.description, category: data.category, state: data.state, imageUrl: data.imageUrl ? 'url(' + data.imageUrl + ')' : await this.getSingleURL(data.category)});         
           }
             localStorage.setItem( '1', JSON.stringify(postArray));
             this.addUsuarioSource.next(JSON.stringify(postArray));
