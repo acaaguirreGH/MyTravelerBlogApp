@@ -1,23 +1,23 @@
-import {  Component, EventEmitter, Input, Output } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import {  Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PostModel, postState } from '../Models/post';
 import { PostService } from '../services/post-service.service';
+
 
 @Component({
   selector: 'app-new-post',
   templateUrl: './new-post.component.html',
   styleUrls: ['./new-post.component.css']
 })
-export class NewPostComponent {
+export class NewPostComponent implements OnDestroy {
   categories: { key: string; value: string; }[];
   @Input() newPost: PostModel;
   @Output() postEmit = new EventEmitter<PostModel>();
-  activeModal: boolean;
 
-   constructor(public postService: PostService) {
+   constructor(public postService: PostService, public dialog: MatDialog) {
     
   }
-
+ 
   ngOnInit() {
 
     if( localStorage.getItem('EditingPost')) {
@@ -41,12 +41,8 @@ export class NewPostComponent {
         this.newPost = r; 
         this.newPost.state = postState.Modified;
         localStorage.removeItem('EditingPost');
-        this.activeModal = true;
       }
-    } else if(!this.activeModal) {
-      this.ClearData();
-      this.activeModal = true;
-    }
+    } 
   }
 
   SavePost(data: PostModel) {
@@ -61,7 +57,7 @@ export class NewPostComponent {
         this.postService.savePost(data);
       }
     }
-    this.ClearData();
+    this.dialog.closeAll();
   } 
 
   ClearData() {    
@@ -73,5 +69,8 @@ export class NewPostComponent {
     localStorage.removeItem('EditingPost'); 
   }
 
+  ngOnDestroy(): void {
+    this.ClearData();
+  }
   
 }
