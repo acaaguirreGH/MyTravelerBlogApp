@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostModel } from '../Models/post';
@@ -17,7 +18,7 @@ export class PostDetailsComponent {
   commentsArray: PostComment[];
   newComment: PostComment;
 
-  constructor(private postSvc: PostService, private actRoute: ActivatedRoute) {
+  constructor(private postSvc: PostService, private actRoute: ActivatedRoute, private loc: Location) {
 }
 
   ngOnInit() {
@@ -56,7 +57,7 @@ export class PostDetailsComponent {
   }
 
   GoBack() {
-    //this.location.back();
+    this.loc.back();
   }
 
   AddComment() {
