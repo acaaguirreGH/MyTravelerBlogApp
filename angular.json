@@ -13,6 +13,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "unsplash-js",
+              "typescript-guid"
+            ],
             "outputPath": "dist/my-traveler-blog-app",
             "index": "src/index.html",
             "main": "src/main.ts",

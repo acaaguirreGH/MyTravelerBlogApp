@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Guid } from 'typescript-guid';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { BaseModalComponent } from '../base-modal/base-modal.component';
 import { PostModel, postState } from '../Models/post';
 
@@ -20,17 +20,46 @@ export class PostPreviewComponent {
   hover: string = 'out';
   sameTypeCounter: {catName: '', };
   URLNEW: string;
-  
-  constructor(private route: ActivatedRoute, private router: Router, public http: HttpClient, public dialog: MatDialog) { }
+  screenHeight: number;
+  screenWidth: number;
+  miniView: boolean = false;
+
+  constructor(private route: ActivatedRoute, private router: Router, public http: HttpClient, public dialog: MatDialog,private deviceService: DeviceDetectorService) {
+    
+   }
   
   ngOnInit() {
-    this.showActions = false;
+    this.getScreenSize();
     if (this.postData.comments === undefined) {
       this.commentsLength = 0;
     } else {
       this.commentsLength = this.postData.comments.length;
     }
     this.URLNEW = '/Posts/'+ this.postData.id;   
+  }
+
+  isMobile(): boolean {
+    return this.deviceService.isMobile();
+  }
+
+  @HostListener('touchstart', ['$event'])
+  EmitEdit($event:any) {
+    if($event.srcElement.offsetParent.innerText == 'delete') {
+      this.removeEmit();
+    }else if($event.srcElement.offsetParent.innerText == 'edit') {
+      this.openEditDialog(this.postData.id)
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize() {
+        this.screenHeight = window.innerHeight;
+        this.screenWidth = window.innerWidth;
+        if(this.screenHeight <= 672 && this.screenWidth <= 1526) {
+          this.showActions = true;
+        }else {
+          this.showActions = false;
+        }
   }
 
   openEditDialog(data: string): void {
