@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Guid } from 'typescript-guid';
 import { BaseModalComponent } from '../base-modal/base-modal.component';
 import { PostModel, postState } from '../Models/post';
 
@@ -13,7 +14,7 @@ import { PostModel, postState } from '../Models/post';
 export class PostPreviewComponent {
   @Input() postData: PostModel;
   @Input() filterCat: string;
-  @Output() removeEmitter = new EventEmitter<number>();
+  @Output() removeEmitter = new EventEmitter<string>();
   postEditData: PostModel;
   showActions = false;
   commentsLength: number;
@@ -21,6 +22,7 @@ export class PostPreviewComponent {
   @ViewChild('closebutton1', {static: false}) private closeModal: ElementRef;
   hover: string = 'out';
   sameTypeCounter: {catName: '', };
+  URLNEW: string;
   
   constructor(private route: ActivatedRoute, private router: Router, public http: HttpClient, public dialog: MatDialog) { }
   
@@ -31,10 +33,14 @@ export class PostPreviewComponent {
     } else {
       this.commentsLength = this.postData.comments.length;
     }
-  
+
+    //let id: { object: string; value: string; }  = this.postData.id as unknown as  { object: string; value: string; };
+    
+    this.URLNEW = '/Posts/'+ this.postData.id;
+    
   }
 
-  openEditDialog(data: number): void {
+  openEditDialog(data: string): void {
    
     //1- way to send data in localStorage
     this.postData.state = postState .Modified;

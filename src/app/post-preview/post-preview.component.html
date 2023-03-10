@@ -1,4 +1,4 @@
- <div class="example-card" id="DivPost" (mouseover)="mouseOver()" (mouseout)="mouseOut()" class="postStyle" [ngClass]="{'postStyle': hover === 'out', 'Backhover': hover === 'in' }" [ngStyle]="{'background-image': this.postData.imageUrl}" routerLink="/Posts/{{postData.id}}">
+ <div class="example-card" id="DivPost" (mouseover)="mouseOver()" (mouseout)="mouseOut()" class="postStyle" [ngClass]="{'postStyle': hover === 'out', 'Backhover': hover === 'in' }" [ngStyle]="{'background-image': this.postData.imageUrl}" routerLink="{{URLNEW}}">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{postData.title}}</mat-card-title>
