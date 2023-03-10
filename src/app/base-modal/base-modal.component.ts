@@ -1,6 +1,5 @@
-import { Component, HostListener, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { PostService } from '../services/post-service.service';
+import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-base-modal',
@@ -10,7 +9,7 @@ import { PostService } from '../services/post-service.service';
 export class BaseModalComponent {
 bars: number;
 
-  constructor(private postServiceOne: PostService, public dialogRef: MatDialogRef<BaseModalComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(public dialogRef: MatDialogRef<BaseModalComponent>) {
    
   }
 }

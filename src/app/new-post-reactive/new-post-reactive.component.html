@@ -56,9 +56,8 @@
                     <button type="button" mat-button mat-dialog-close >Cancel</button>
             </div>
             </div>
-            <div>
-                <button mat-flat-button color="primary" type="submit" 
-                [title]="postGroup.valid ? 'Save your data' :'Disabled until the form is valid'"
+            <div matTooltip="{{postGroup.valid ? 'Save your data' : 'Disabled until the form is valid'}}" style="width: fit-content;" >
+                <button mat-raised-button color="primary" type="submit"                
                 [disabled]="!postGroup.valid" (click)="savePost()">
                 Save
                 </button>

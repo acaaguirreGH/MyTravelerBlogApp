@@ -22,6 +22,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { BaseModalComponent } from './base-modal/base-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NewPostReactiveComponent } from './new-post-reactive/new-post-reactive.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 
 @NgModule({
@@ -51,7 +53,8 @@ import { NewPostReactiveComponent } from './new-post-reactive/new-post-reactive.
     MatGridListModule,
     MatProgressBarModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
