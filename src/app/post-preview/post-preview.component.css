@@ -54,17 +54,16 @@ p {
 .card-subtitle {
     font-size: 1rem;
 }
-.mat-card-actions {
+mat-card-actions {
     display: flex;
     position: absolute;  
     top: 80%;
     right: 20%;
     color: white;
+    align-items: end;
 }
 
-.mat-card-actions:hover::after {
-    z-index: 5;
-}
+
 
 .mat-form-field{
     display: initial;

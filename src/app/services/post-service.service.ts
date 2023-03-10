@@ -130,7 +130,7 @@ export class PostService {
             // handle error here
             console.log('error occurred: ', result.errors[0]);
           } else {
-            let counter = 0;
+            let counter = 1;
             this.existingPosts.forEach(r => {
               if(r.category === x.category) {
                 var url = 'url('+'\'' + result.response.results[counter].urls.regular + ''+'\)';
