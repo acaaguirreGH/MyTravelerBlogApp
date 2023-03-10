@@ -1,5 +1,6 @@
 import {  Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Guid } from 'typescript-guid';
 import { PostModel, postState } from '../Models/post';
 import { PostService } from '../services/post-service.service';
 
@@ -27,7 +28,7 @@ export class NewPostComponent implements OnDestroy {
     }
     if (this.newPost === undefined) {
       this.newPost = new PostModel();
-      this.newPost.id = 0;
+      this.newPost.id = this.postService.GenerateGUID();
       this.ClearData();
     }   
     this.categories = this.postService.GetCategories();
@@ -63,7 +64,7 @@ export class NewPostComponent implements OnDestroy {
   ClearData() {    
     this.newPost.category = '';
     this.newPost.description = '';
-    this.newPost.id = 0;
+    this.newPost.id = this.postService.GenerateGUID();
     this.newPost.imageUrl = undefined;
     this.newPost.title = '';
     localStorage.removeItem('EditingPost'); 
