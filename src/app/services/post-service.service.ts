@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { PostModel, postState } from '../Models/post';
 import { createApi } from 'unsplash-js';
 import { ICategory } from '../Models/icategory';
+import { Guid } from 'typescript-guid';
 @Injectable({
   providedIn: 'root'
 })
@@ -36,6 +37,10 @@ export class PostService {
     ];
   }
 
+  GenerateGUID() {    
+    let id: { object: string; value: string; }  = Guid.create() as unknown as  { object: string; value: string; };
+    return id.value;
+  }
   GetPosts(): Observable<PostModel[]> {
     this.existingPosts = [];
     let postsCache = localStorage.getItem('1');
@@ -47,7 +52,7 @@ export class PostService {
     else {
       this.existingPosts.push(
         {
-        id: 1,
+        id: this.GenerateGUID(),
         title : 'Cancun',
         description : 'The best beach to vacation.',
         imageUrl : undefined,
@@ -79,7 +84,7 @@ export class PostService {
       });
       this.existingPosts.push(
       {
-        id: 2,
+        id: this.GenerateGUID(),
         title : 'Camilo',
         description : 'Escuchar musica',
         imageUrl : undefined,
@@ -88,7 +93,7 @@ export class PostService {
       });
       this.existingPosts.push(
       {
-        id: 3,
+        id: this.GenerateGUID(),
         title : 'Divisas.',
         description : 'Dolar pierde contra el peso.',
         imageUrl : undefined,
@@ -97,7 +102,7 @@ export class PostService {
       });
       this.existingPosts.push(
       {
-        id: 4,
+        id: this.GenerateGUID(),
         title : 'LA',
         description : 'No se puede viajar a LA.',
         imageUrl : undefined,
@@ -215,7 +220,7 @@ export class PostService {
           {
             lastId = lastId + 1;
             postArray.push(
-              {id: data.id = lastId, title: data.title, description: data.description, category: data.category, state: data.state, imageUrl: data.imageUrl ? 'url(' + data.imageUrl + ')' : await this.getSingleURL(data.category)});         
+              {id: data.id = this.GenerateGUID(), title: data.title, description: data.description, category: data.category, state: data.state, imageUrl: data.imageUrl ? 'url(' + data.imageUrl + ')' : await this.getSingleURL(data.category)});         
           }
             localStorage.setItem( '1', JSON.stringify(postArray));
             this.addUsuarioSource.next(JSON.stringify(postArray));

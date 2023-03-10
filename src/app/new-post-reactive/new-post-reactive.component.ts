@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Guid } from 'typescript-guid';
 import { PostModel, postState } from '../Models/post';
 import { PostService } from '../services/post-service.service';
 
@@ -34,7 +35,7 @@ export class NewPostReactiveComponent {
     }
     if (this.newPost === undefined) {
       this.newPost = new PostModel();
-      this.newPost.id = 0;
+      this.newPost.id = this.postSvc.GenerateGUID();
       this.postGroup = new FormGroup({
         Title: new FormControl('', Validators.required),
         Description: new FormControl('', Validators.required),
@@ -81,7 +82,7 @@ savePost() {
 ClearData() {    
   this.newPost.category = '';
   this.newPost.description = '';
-  this.newPost.id = 0;
+  this.newPost.id = this.postSvc.GenerateGUID();
   this.newPost.imageUrl = undefined;
   this.newPost.title = '';
   localStorage.removeItem('EditingPost'); 

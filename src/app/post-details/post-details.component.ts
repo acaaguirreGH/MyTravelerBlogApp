@@ -18,7 +18,10 @@ export class PostDetailsComponent {
   commentsArray: PostComment[];
   newComment: PostComment;
 
+
   constructor(private postSvc: PostService, private actRoute: ActivatedRoute, private location: Location) {
+
+
 }
 
   ngOnInit() {
@@ -57,7 +60,9 @@ export class PostDetailsComponent {
   }
 
   GoBack() {
+
     this.location.back();
+
   }
 
   AddComment() {
