@@ -7,22 +7,10 @@
     background-position: center center;
 	background-size: cover;
     background-repeat: no-repeat;
-  font-weight: 500;
-}
-.postStyle {
-    background-size: cover;
+    font-weight: 500;
 }
 
 mat-icon{
-    color: white;
-}
-
-#actions{
-    right: 0;    
-}
-
-button{
-    outline-style: initial;
     color: white;
 }
 
@@ -45,11 +33,6 @@ button{
 
 p {
     color: white;
-}
-
-.right{
-    padding-bottom: 50px;
-    text-align: center;
 }
 
 .mat-button-toggle{
@@ -109,4 +92,9 @@ p {
     background: white;
     transition: width 1s;
     width: 100px;
+}
+
+
+@media screen and (max-width: 992px) {
+
 }

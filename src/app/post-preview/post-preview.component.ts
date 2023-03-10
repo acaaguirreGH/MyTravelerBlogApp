@@ -15,11 +15,8 @@ export class PostPreviewComponent {
   @Input() postData: PostModel;
   @Input() filterCat: string;
   @Output() removeEmitter = new EventEmitter<string>();
-  postEditData: PostModel;
   showActions = false;
   commentsLength: number;
-  visiblePost = false;
-  @ViewChild('closebutton1', {static: false}) private closeModal: ElementRef;
   hover: string = 'out';
   sameTypeCounter: {catName: '', };
   URLNEW: string;
@@ -33,11 +30,7 @@ export class PostPreviewComponent {
     } else {
       this.commentsLength = this.postData.comments.length;
     }
-
-    //let id: { object: string; value: string; }  = this.postData.id as unknown as  { object: string; value: string; };
-    
-    this.URLNEW = '/Posts/'+ this.postData.id;
-    
+    this.URLNEW = '/Posts/'+ this.postData.id;   
   }
 
   openEditDialog(data: string): void {
@@ -55,30 +48,10 @@ export class PostPreviewComponent {
   }
 
   filterPosts() {
-    if (this.filterCat === 'All' || this.filterCat === this.postData.category) {
-      
+    if (this.filterCat === 'All' || this.filterCat === this.postData.category) {      
       return true;
     }
     return false;
-  }
-
-  
-  ReceivePost(editedPost: PostModel) {
-    if(editedPost === null) {
-      this.hideModel1();
-      return;
-    }
-    if (1===1) {
-    //Replace current post id with new data
-    if (localStorage.getItem('EditingPost')) {
-      let postEdit = localStorage.getItem('EditingPost');
-      let parsed = JSON.parse(postEdit!);
-      this.postData = parsed;
-    } else {
-      localStorage.setItem('EditingPost', JSON.stringify(editedPost));
-    }
-    this.hideModel1();
-    }
   }
 
   removeEmit() {
@@ -101,10 +74,6 @@ export class PostPreviewComponent {
     this.hover = 'out';
     this.showActions = !this.showActions;
   } 
-
-  hideModel1() {
-    this.closeModal.nativeElement.click();
-  }
 }
 
 

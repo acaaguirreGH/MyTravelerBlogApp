@@ -1,10 +1,9 @@
-import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { PostModel } from '../Models/post';
 import { createApi } from 'unsplash-js';
 import { PostService } from '../services/post-service.service';
 import { ICategory } from '../Models/icategory';
-import { Guid } from 'typescript-guid';
 
 @Component({
   selector: 'app-posts-holder',

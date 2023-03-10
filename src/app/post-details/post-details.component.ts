@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostModel } from '../Models/post';
 import { PostComment } from '../Models/post-comment';
 import { PostService } from '../services/post-service.service';
@@ -19,7 +19,7 @@ export class PostDetailsComponent {
   newComment: PostComment;
 
 
-  constructor(private postSvc: PostService, private actRoute: ActivatedRoute, private location: Location) {
+  constructor(private postSvc: PostService, private actRoute: ActivatedRoute, private location: Location, private route: Router) {
 
 
 }
@@ -60,7 +60,7 @@ export class PostDetailsComponent {
   }
 
   GoBack() {
-
+    //this.route.navigate(['Home'], { relativeTo: null });
     this.location.back();
 
   }

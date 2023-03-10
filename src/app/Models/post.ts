@@ -1,4 +1,3 @@
-import { Guid } from "typescript-guid";
 import { PostComment } from "./post-comment";
 
 export class PostModel {
