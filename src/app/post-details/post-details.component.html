@@ -12,7 +12,7 @@
         <p class="dets">{{currentPost.description}}</p>
     </div>
     <div class="container rounded">    
-        <b>Comments</b>
+        <b *ngIf="commentsArray && commentsArray.length > 0">Comments</b>
         <div *ngFor="let comment of commentsArray">
             <div class="card text-left">
                 <div class="cards">

@@ -19,11 +19,9 @@ export class PostsHolderComponent implements OnInit  {
   postArrayF: PostModel[];
   filterCategory = 'All';
   lastId: number;
-  activeModal = false;
-  @ViewChild('closebutton', {static: false}) private closeModal: ElementRef;
+  activeModal = false; 
   unsplashApi = createApi({
     accessKey: 'JxTV9Lriy4vflMjdekklqBnq-ODL0aZP9omvh8Jg3mE'
-
        });
 
   constructor(public postServiceOne: PostService, private router: Router) {
@@ -31,8 +29,7 @@ export class PostsHolderComponent implements OnInit  {
     this.postServiceOne.addUsuario$.subscribe(status => {
       this.postArray = JSON.parse(localStorage.getItem('1')!);
     })
-   }
- 
+   } 
   
   ngOnInit() {
   this.categories = this.postServiceOne.GetCategories();
@@ -86,13 +83,9 @@ filterPosts($event: any) {
   }
 }
 
-SavePost(data: PostModel) {
-  if (data != null) {
-    this.postServiceOne.savePost(data);
+  SavePost(data: PostModel) {
+    if (data != null) {
+      this.postServiceOne.savePost(data);
+    }
   }
-}
-
-hideModel() {
-this.closeModal.nativeElement.click();
-} 
 }
