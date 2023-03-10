@@ -1,20 +1,18 @@
- <div class="example-card" id="DivPost" (mouseover)="mouseOver()" (mouseout)="mouseOut()" class="postStyle" [ngClass]="{'postStyle': hover === 'out', 'Backhover': hover === 'in' }" [ngStyle]="{'background-image': this.postData.imageUrl}" routerLink="{{URLNEW}}">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
+ <mat-card class="example-card" id="DivPost" (mouseover)="mouseOver()" (mouseout)="mouseOut()" [ngStyle]="{'background-image': this.postData.imageUrl}" routerLink="{{URLNEW}}">
+    <mat-card-header>      
       <mat-card-title>{{postData.title}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <div class="postDetails">
-            <div id="bar" style="height: 12px;" [ngClass]="{'barprogress': hover === 'out', 'barprogressoverlay': hover === 'in' }" >
-              
+            <div id="bar" style="height: 12px;" [ngClass]="{'barprogress': hover === 'out', 'barprogressoverlay': hover === 'in' }" >              
             </div>
-            <i><p>{{commentsLength}} Comments </p></i>
+            <i><p>{{commentsLength}} Comments <mat-icon> insert_comment</mat-icon> </p></i>
             <h4 class="card-subtitle mb-2">{{postData.description}}</h4>
             <p class="card-text">{{postData.category}}</p> 
           </div> 
     </mat-card-content>
-    <mat-card-actions [hidden]="!showActions">
+    <mat-card-actions [hidden]="!showActions" align="end">
         <button mat-button  (click)="removeEmit(); $event.stopPropagation()"><mat-icon>delete</mat-icon></button>
         <button mat-button data-toggle="modal" data-target="#EditPostModal" (click)="openEditDialog(postData.id); $event.stopPropagation()"><mat-icon>edit</mat-icon></button>      
     </mat-card-actions> 
-</div>
+</mat-card>

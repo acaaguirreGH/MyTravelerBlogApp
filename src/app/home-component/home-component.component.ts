@@ -14,12 +14,10 @@ export class HomeComponentComponent {
   constructor( public dialog: MatDialog) { 
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialog(): void {
     this.hideButton = true;
     this.dialog.open(BaseModalComponent, {
-      width: '350px',
-      enterAnimationDuration,
-      exitAnimationDuration,
+      width: '350px'
     });
   }
 }
