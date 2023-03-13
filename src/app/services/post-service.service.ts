@@ -133,9 +133,9 @@ export class PostService {
             let counter = 1;
             this.existingPosts.forEach(r => {
               if(r.category === x.category) {
-                var url = 'url('+'\'' + result.response.results[counter].urls.regular + ''+'\)';
-                r.imageUrl = url;
                 counter++;
+                var url = 'url('+'\'' + result.response.results[counter].urls.regular + ''+'\)';
+                r.imageUrl = url;                
               }
             });
             localStorage.setItem('1', JSON.stringify(this.existingPosts));
@@ -165,7 +165,7 @@ export class PostService {
               console.log('error occurred: ', result.errors[0]);
               return url;
             } else {
-              let counter = 0;
+              let counter = 1;
               this.existingPosts.forEach(r => {
                 if(r.category === category) {
                   counter++;
