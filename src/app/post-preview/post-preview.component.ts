@@ -42,23 +42,25 @@ export class PostPreviewComponent {
     return this.deviceService.isMobile();
   }
 
-  @HostListener('touchstart', ['$event'])
+  @HostListener('touchend', ['$event'])
   EmitEdit($event:any) {
     if($event.srcElement.offsetParent.innerText == 'delete') {
       this.removeEmit();
     }else if($event.srcElement.offsetParent.innerText == 'edit') {
       this.openEditDialog(this.postData.id)
     }
+    return false;
   }
 
   @HostListener('window:resize', ['$event'])
   getScreenSize() {
         this.screenHeight = window.innerHeight;
         this.screenWidth = window.innerWidth;
-        if(this.screenHeight <= 672 && this.screenWidth <= 1526) {
+        //Normal screen size
+        if(this.screenHeight < 746 && this.screenWidth < 1536 || this.isMobile()) {
           this.showActions = true;
-        }else {
-          this.showActions = false;
+        } else {
+         this.showActions = false;
         }
   }
 
@@ -70,10 +72,10 @@ export class PostPreviewComponent {
 
     this.dialog.open(BaseModalComponent, {
       width: 'auto',
+      
       //2- send data in modal object
-      data:{id: data}
+      //data:{id: data}
     });
-
   }
 
   filterPosts() {
