@@ -63,8 +63,6 @@ mat-card-actions {
     align-items: end;
 }
 
-
-
 .mat-form-field{
     display: initial;
 }
@@ -93,7 +91,7 @@ mat-card-actions {
     width: 100px;
 }
 
-
 @media screen and (max-width: 992px) {
 
 }
+
