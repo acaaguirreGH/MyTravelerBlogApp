@@ -25,7 +25,7 @@ export class PostsHolderComponent implements OnInit  {
 
   constructor(public postServiceOne: PostService, private router: Router) {
 
-    this.postServiceOne.addUsuario$.subscribe(status => {
+    this.postServiceOne.addPost.subscribe(status => {
       this.postArray = JSON.parse(localStorage.getItem('1')!);
     })
    } 
