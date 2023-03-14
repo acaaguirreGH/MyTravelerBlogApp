@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, count, Observable, of } from 'rxjs';
 import { PostModel, postState } from '../Models/post';
 import { createApi } from 'unsplash-js';
 import { ICategory } from '../Models/icategory';
@@ -18,12 +18,12 @@ export class PostService {
 
        });
 
-  private addUsuarioSource = new BehaviorSubject<string>('false');
-  public addUsuario$ = this.addUsuarioSource.asObservable();    
+  private addPostSource = new BehaviorSubject<string>('false');
+  public addPost = this.addPostSource.asObservable();    
 
   constructor() {
     //Subscribe for changes so the UI gets refreshed with the new posts
-    this.addUsuario$.subscribe();
+    this.addPost.subscribe();
    }
 
   GetCategories() {
@@ -117,6 +117,7 @@ export class PostService {
 
    try {
 
+    
     this.existingPosts.forEach(x => {
       if(x.imageUrl === undefined || x.imageUrl === '') {
         this.unsplashApi.search.getPhotos(
@@ -130,7 +131,7 @@ export class PostService {
             // handle error here
             console.log('error occurred: ', result.errors[0]);
           } else {
-            let counter = 1;
+            let counter = 0;
             this.existingPosts.forEach(r => {
               if(r.category === x.category) {
                 counter++;
@@ -153,24 +154,28 @@ export class PostService {
   async getSingleURL(category: string): Promise<string> {
     let url = "";
     try {      
+
+           let counter = 0;
+              this.existingPosts.forEach(r => {
+                if(r.category === category) {
+                  counter++;
+                }
+              });
+
           await this.unsplashApi.search.getPhotos(
             {
               query: category,
               page: 1,
-              perPage: this.existingPosts.length + 1
+              perPage: counter + 1,
+              orderBy: 'latest',
+              contentFilter: 'low'
             })
             .then(async result => {
             if (result.errors) {
               // handle error here
               console.log('error occurred: ', result.errors[0]);
               return url;
-            } else {
-              let counter = 1;
-              this.existingPosts.forEach(r => {
-                if(r.category === category) {
-                  counter++;
-                }
-              });
+            } else {              
               url = 'url('+'\'' + result.response.results[counter].urls.regular + ''+'\)';            
             }
             return url;
@@ -223,7 +228,7 @@ export class PostService {
               {id: data.id = this.GenerateGUID(), title: data.title, description: data.description, category: data.category, state: data.state, imageUrl: data.imageUrl ? 'url(' + data.imageUrl + ')' : await this.getSingleURL(data.category)});         
           }
             localStorage.setItem( '1', JSON.stringify(postArray));
-            this.addUsuarioSource.next(JSON.stringify(postArray));
+            this.addPostSource.next(JSON.stringify(postArray));
             this.existingPosts = postArray;
             if(postArray.length === 0 && postArrayF.length > 0) {
               postArray = postArrayF;
@@ -231,6 +236,6 @@ export class PostService {
           }
         }
     }
-    return this.addUsuario$;
+    return this.addPost;
     }
 }

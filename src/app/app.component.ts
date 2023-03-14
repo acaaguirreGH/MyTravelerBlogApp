@@ -8,6 +8,10 @@ import { PostModel } from './Models/post';
 })
 export class AppComponent implements OnDestroy {
 
+  constructor() {
+    window.onbeforeunload = () => this.ngOnDestroy();
+  }
+
   ngOnDestroy(): void {
   if(localStorage.getItem('1')){
       let arrayPosts: PostModel[] = JSON.parse(localStorage.getItem('1')!);
