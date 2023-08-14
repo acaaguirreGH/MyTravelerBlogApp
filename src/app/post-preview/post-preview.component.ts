@@ -71,7 +71,8 @@ export class PostPreviewComponent {
     localStorage.setItem('EditingPost', JSON.stringify(this.postData));
 
     this.dialog.open(BaseModalComponent, {
-      width: 'auto',
+      width: '350px',
+      id: 'Edit'
       
       //2- send data in modal object
       //data:{id: data}

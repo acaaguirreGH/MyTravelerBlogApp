@@ -17,7 +17,8 @@ export class HomeComponentComponent {
   openDialog(): void {
     this.hideButton = true;
     this.dialog.open(BaseModalComponent, {
-      width: '350px'
+      width: '350px',
+      id : 'Create'
     });
   }
 }

@@ -8,8 +8,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class BaseModalComponent {
 bars: number;
+Title2Use: string;
 
   constructor(public dialogRef: MatDialogRef<BaseModalComponent>) {
-   
+    this.Title2Use = ""
+   this.Title2Use = dialogRef.id;
   }
 }
