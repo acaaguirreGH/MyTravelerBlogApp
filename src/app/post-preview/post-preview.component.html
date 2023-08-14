@@ -13,7 +13,7 @@
           </div>          
       </mat-card-content>
       <mat-card-actions [hidden]="!showActions"  class="col-sm-2" align="end" >
-        <button aria-label="Delete" mat-button  (click)="removeEmit(); $event.stopPropagation()"><mat-icon>delete</mat-icon></button>        
+        <button aria-label="Delete" mat-button (click)="handleDelete(); $event.stopPropagation()"><mat-icon>delete</mat-icon></button>        
         <button aria-label="Edit" mat-button (click)="openEditDialog(postData.id); $event.stopPropagation(); "><mat-icon>edit</mat-icon></button>      
       </mat-card-actions> 
     </div>
