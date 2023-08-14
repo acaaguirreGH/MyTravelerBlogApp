@@ -104,7 +104,14 @@ export class PostPreviewComponent {
   mouseOut() {
     this.hover = 'out';
     this.showActions = !this.showActions;
-  } 
+  }
+
+  handleDelete() {
+    if(confirm("Are you sure to delete the post?")) {
+      this.removeEmit();
+      
+    }
+  }
 }
 
 
