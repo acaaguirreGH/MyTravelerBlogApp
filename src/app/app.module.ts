@@ -23,6 +23,8 @@ import { BaseModalComponent } from './base-modal/base-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NewPostReactiveComponent } from './new-post-reactive/new-post-reactive.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SidebarmenuComponent } from './sidebarmenu/sidebarmenu.component';
+import { DevSiteComponent } from './dev-site/dev-site.component';
 
 
 
@@ -35,7 +37,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     PostsHolderComponent,
     NewPostComponent,
     BaseModalComponent,
-    NewPostReactiveComponent
+    NewPostReactiveComponent,
+    SidebarmenuComponent,
+    DevSiteComponent
   ],
   imports: [
     BrowserModule,
