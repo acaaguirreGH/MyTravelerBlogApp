@@ -1,1 +1,35 @@
-<p>dev-site works!</p>
+<form class="container">
+<!-- <div class="form-group">
+    <label>Click Button to test an HTTP POST Call</label> <br>  
+    <button class="btn button" (click)="CallAzFN()" >Call Azure Test</button> <br>
+    <img [src]="imgURL" style="width: 250px; height: 145px;">
+</div> -->
+
+ <div class="form-group"> 
+        <label>Enter a prompt to generate an image using DALL-E AI</label> <br>
+         <input class="form-control"  type="text" id="inputPrompt" [value]="textRequest" >
+</div> 
+<button class="btn btn-outline-success my-2 my-sm-0" (click)="CallDallE($event)">Submit</button> <br>
+
+<div class="form-group"> 
+<mat-card class="example-card" appearance="outlined" *ngIf="imgURL">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Image generated using DALL-E</mat-card-title>
+    <mat-card-subtitle>{{textRequest}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="imgURL" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      {{imgDescription}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+</div>
+
+
+</form>

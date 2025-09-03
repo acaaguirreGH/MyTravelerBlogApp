@@ -12,7 +12,7 @@ import { PostService } from '../services/post-service.service';
 })
 export class PostDetailsComponent {
 
-  currPostId = 0;
+  currPostId: number = 0;
   posts: PostModel[];
   currentPost: PostModel;
   commentsArray: PostComment[];

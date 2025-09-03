@@ -40,3 +40,7 @@
     margin-right: 0%;
     overflow: hidden;
 }
+
+.mat-button-toggle{
+    color:red;
+}
